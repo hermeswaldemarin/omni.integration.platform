@@ -1,0 +1,136 @@
+<!doctype html>
+
+<script src="jquery-2.1.4.min.js"></script>
+<script src="stomp.js"></script>
+<script src="sockjs-1.0.3.js"></script>
+
+<script>
+    //var socket = new WebSocket("ws://localhost:8080/stomp");
+    //var stompClient = Stomp.over(socket);
+
+    var socket = new SockJS("http://localhost:8080/sockjs");
+    var stompClient = Stomp.over(socket);
+
+
+
+    $( document ).ready(function() {
+        stompClient.connect({}, function(frame) {
+            stompClient.subscribe("/messages/cti/eventcallback", function(message) {
+                $("#mensagem").html(JSON.parse(message.body).returnMessage);
+            });
+        });
+    });
+
+    function send(object){
+        stompClient.send("/gateway/cti/command", {}, JSON.stringify(object));
+    }
+
+    function login(){
+        send(
+                {
+                    eventName : "login",
+                    arguments : {
+                        arg1 : "teste",
+                        arg2 : "teste2"
+                    }
+                }
+        );
+    }
+
+    function logout(){
+        send(
+                {
+                    eventName : "logout",
+                    arguments : {
+                        arg1 : "teste",
+                        arg2 : "teste2"
+                    }
+                }
+        );
+    }
+
+    function xxx(){
+        send(
+                {
+                    eventName : "xxx",
+                    arguments : {
+                        arg1 : "teste",
+                        arg2 : "teste2"
+                    }
+                }
+        );
+    }
+
+    function becomeAvailable(){
+        send(
+                {
+                    eventName : "becomeAvailable",
+                    arguments : {
+                        arg1 : "teste",
+                        arg2 : "teste2"
+                    }
+                }
+        );
+    }
+
+    function becomeUnavailable(){
+        send(
+                {
+                    eventName : "becomeUnavailable",
+                    arguments : {
+                        arg1 : "teste",
+                        arg2 : "teste2"
+                    }
+                }
+        );
+    }
+
+    function answer(){
+        send(
+                {
+                    eventName : "answer",
+                    arguments : {
+                        arg1 : "teste",
+                        arg2 : "teste2"
+                    }
+                }
+        );
+    }
+
+    function dropCall(){
+        send(
+                {
+                    eventName : "dropCall",
+                    arguments : {
+                        arg1 : "teste",
+                        arg2 : "teste2"
+                    }
+                }
+        );
+    }
+
+</script>
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+</head>
+<body>
+
+
+
+<button onclick="login()">Login</button>
+<button onclick="logout()">Logout</button>
+<button onclick="xxx()">xxx</button>
+<button onclick="becomeAvailable()">Become Available</button>
+<button onclick="becomeUnavailable()">Become Unavailable</button>
+<button onclick="answer()">answer</button>
+<button onclick="dropCall()">dropCall</button>
+
+<br>
+<div id="mensagem"></div>
+
+</body>
+</html>
