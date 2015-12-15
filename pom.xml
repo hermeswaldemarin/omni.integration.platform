@@ -20,7 +20,7 @@
 
     </dependencies>
 
-	<name>CTIPlatform</name>
-	<description>Demo project for Spring Boot</description>
+	<name>GatewayPlatform</name>
+	<description>Gateway Platform for Omni Plusoft</description>
 
 </project>
