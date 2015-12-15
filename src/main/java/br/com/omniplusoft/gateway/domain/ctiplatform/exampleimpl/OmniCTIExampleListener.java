@@ -18,7 +18,7 @@ public class OmniCTIExampleListener {
     CallbackDispatcher eventDispatcher;
 
 
-    //@Scheduled(fixedDelay=10000)
+    @Scheduled(fixedDelay=10000)
     public void sendEvent() {
 
         eventDispatcher.dispatch(new CTIResponse("ring", 0, "ringing...", null));
