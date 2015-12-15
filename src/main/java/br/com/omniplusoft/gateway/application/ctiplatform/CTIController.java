@@ -1,19 +1,20 @@
 package br.com.omniplusoft.gateway.application.ctiplatform;
 
-import br.com.omniplusoft.gateway.domain.ctiplatform.CTIEvent;
-import br.com.omniplusoft.gateway.domain.ctiplatform.MainActionExecution;
-import br.com.omniplusoft.gateway.domain.ctiplatform.OmniPlusoftCTI;
+import br.com.omniplusoft.gateway.domain.ctiplatform.CTIEventHandler;
+import br.com.omniplusoft.gateway.domain.ctiplatform.event.CTIEvent;
+import br.com.omniplusoft.gateway.domain.ctiplatform.exceptions.DispatchExecutionException;
+import br.com.omniplusoft.gateway.infrastructure.ctiplatform.CTIEvents;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.core.MessageSendingOperations;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
+import java.io.IOException;
 
 /**
  * Created by hermeswaldemarin on 10/12/15.
@@ -26,30 +27,22 @@ public class CTIController {
     @Autowired
     private MessageSendingOperations<String> messagingTemplate;
 
-    @Autowired(required = false)
-    private OmniPlusoftCTI omniPlusoftCTI;
+    @Autowired
+    private CTIEventHandler handler;
 
+    @MessageMapping("/cti/command/{eventName}")
+    public void executeCommand(@DestinationVariable String eventName, Message eventContent) {
 
-    @MessageMapping("/cti/command")
-    public void executeCommand(CTIEvent event) {
+        ObjectMapper mapper = new ObjectMapper();
 
         try {
-            new MainActionExecution(OmniPlusoftCTI.class.getDeclaredMethod(event.getEventName(), Map.class), Map.class).execute(event.getArguments(), omniPlusoftCTI);
-        } catch (NoSuchMethodException e) {
-            try {
-                new MainActionExecution(OmniPlusoftCTI.class.getDeclaredMethod("genericEvent", Map.class), Map.class).execute(event.getArguments(), omniPlusoftCTI);
-            } catch (NoSuchMethodException e1) {
-                logger.error("Generic Method not exists.", e1);
-            }
+            CTIEvent ctiEvent = (CTIEvent) mapper.readValue(new String((byte[])eventContent.getPayload()), CTIEvents.valueOf(eventName.toUpperCase()).getCtiEventClass());
+            handler.dispatch(ctiEvent);
+        } catch (IOException e) {
+            throw new DispatchExecutionException(e);
+        }finally {
+            mapper = null;
         }
-    }
-
-    @RequestMapping("/sendEvent")
-    @ResponseBody
-    public void sendEvent (@RequestBody CTIEvent event ) {
-
-        this.messagingTemplate.convertAndSend("/message/cti/eventcallback", event);
-
     }
 
 }

@@ -1,19 +1,40 @@
 package br.com.omniplusoft.gateway.domain.ctiplatform;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.core.MessageSendingOperations;
-import org.springframework.stereotype.Service;
+import br.com.omniplusoft.gateway.domain.ctiplatform.event.CTIEvent;
+import br.com.omniplusoft.gateway.domain.ctiplatform.exceptions.CTIMethodArgumentMismatchException;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
- * Created by hermeswaldemarin on 11/12/15.
+ * Created by hermeswaldemarin on 14/12/15.
  */
-@Service
 public class EventDispatcher {
 
-    @Autowired
-    private MessageSendingOperations<String> messagingTemplate;
+    private Method method;
+    private Object instance;
 
-    public void dispatch(CTIEvent event) {
-        this.messagingTemplate.convertAndSend("/messages/cti/eventcallback", event);
+    public EventDispatcher(Method method, Object instance) {
+        this.method = method;
+        this.instance = instance;
+    }
+
+    public void invoke(CTIEvent event){
+        try {
+
+            method.invoke(instance, event);
+
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e){
+            throw new CTIMethodArgumentMismatchException("Method "
+                    + this.method.getName()
+                    + " from "
+                    + this.instance.getClass().getName()
+                    + " has no valid argument type."
+                    , e);
+        }
     }
 }

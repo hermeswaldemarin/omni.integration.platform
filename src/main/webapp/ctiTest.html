@@ -22,9 +22,9 @@
     });
 
     function send(object){
-        stompClient.send("/gateway/cti/command", {}, JSON.stringify(object));
+        stompClient.send("/gateway/cti/command/" + object.eventName, {destination: "/gateway/cti/command/" + object.eventName}, JSON.stringify(object));
     }
-
+""
     function login(){
         send(
                 {

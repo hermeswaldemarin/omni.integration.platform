@@ -4,16 +4,21 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.omniplusoft</groupId>
-	<artifactId>CTIPlatform</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<artifactId>GatewayPlatform</artifactId>
+	<version>0.0.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
     <parent>
         <groupId>br.com.omniplusoft</groupId>
-        <artifactId>ctiplatform-dependencies</artifactId>
-        <version>0.0.2-SNAPSHOT</version>
+        <artifactId>gatewayplatform-dependencies</artifactId>
+        <version>0.0.3-SNAPSHOT</version>
         <relativePath/>
     </parent>
+
+    <dependencies>
+
+
+    </dependencies>
 
 	<name>CTIPlatform</name>
 	<description>Demo project for Spring Boot</description>

@@ -5,16 +5,16 @@ import java.util.Map;
 /**
  * Created by hermeswaldemarin on 10/12/15.
  */
-public class CTIEvent {
-    private String eventName;
-    private Integer returnCode;
-    private String returnMessage;
-    private Map<String, String> arguments;
+public class CTIResponse {
+    protected String eventName;
+    protected Integer returnCode;
+    protected String returnMessage;
+    protected Map<String, String> arguments;
 
-    public CTIEvent() {
+    public CTIResponse() {
     }
 
-    public CTIEvent(String eventName, Integer returnCode, String returnMessage, Map<String, String> arguments) {
+    public CTIResponse(String eventName, Integer returnCode, String returnMessage, Map<String, String> arguments) {
         this.eventName = eventName;
         this.returnCode = returnCode;
         this.returnMessage = returnMessage;
