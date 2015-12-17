@@ -32,7 +32,7 @@ public abstract class AbstractCTIPlatformTest {
 
     protected AnnotationConfigWebApplicationContext wac;
 
-    protected static final long TIMEOUT = 2;
+    protected static long TIMEOUT = 2;
 
     protected String activeProfile = "example";
 
@@ -75,10 +75,7 @@ public abstract class AbstractCTIPlatformTest {
         }
     }
 
-
-    protected String getPayloadReturnFromEvent(String eventName) throws Exception{
-        CTIEvent eventToSend = new CTIEvent(new HashMap<>());
-
+    protected String getPayloadReturnFromEvent(String eventName, CTIEvent eventToSend) throws Exception{
         ObjectMapper mapper = new ObjectMapper();
 
         TextMessage messageSubscribe = StompTextMessageBuilder.create(StompCommand.SUBSCRIBE)
@@ -93,6 +90,11 @@ public abstract class AbstractCTIPlatformTest {
         assertTrue(webSocketHandler.latch.await(TIMEOUT, TimeUnit.SECONDS));
 
         return webSocketHandler.actual.get(0).getPayload();
+    }
+
+
+    protected String getPayloadReturnFromEvent(String eventName) throws Exception{
+        return getPayloadReturnFromEvent(eventName, new CTIEvent(new HashMap<>()));
     }
 
 }
