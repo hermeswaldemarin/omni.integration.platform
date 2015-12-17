@@ -31,6 +31,7 @@ public class OmniCTIBecomeAvailableHandler {
         callbackDispatcher.dispatch(new CTIResponse("status", 0, "Now you are available.", Collections.unmodifiableMap(Stream.of(
                 new AbstractMap.SimpleEntry<>("arg1", "one"),
                 new AbstractMap.SimpleEntry<>("arg2", "two"))
-                .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())))));
+                .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue()))))
+        );
     }
 }

@@ -5,8 +5,23 @@ package br.com.omniplusoft.gateway.domain.ctiplatform.event;
  */
 public class BecomeUnavailableEvent extends CTIEvent {
 
+    private String reasonCode;
+
     public BecomeUnavailableEvent() {
         super();
+    }
+
+    public BecomeUnavailableEvent(String reasonCode) {
+
+        this.reasonCode = reasonCode;
+    }
+
+    public String getReasonCode() {
+        return reasonCode;
+    }
+
+    public void setReasonCode(String reasonCode) {
+        this.reasonCode = reasonCode;
     }
 
 }

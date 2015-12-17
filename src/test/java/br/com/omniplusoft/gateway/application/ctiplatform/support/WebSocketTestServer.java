@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package br.com.omniplusoft.gateway.support;
+package br.com.omniplusoft.gateway.application.ctiplatform.support;
 
 import javax.servlet.Filter;
 import javax.servlet.ServletContext;

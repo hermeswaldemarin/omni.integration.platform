@@ -6,43 +6,13 @@ import java.util.Map;
  * Created by hermeswaldemarin on 10/12/15.
  */
 public class CTIEvent {
-    protected String eventName;
-    protected Integer returnCode;
-    protected String returnMessage;
     protected Map<String, String> arguments;
 
     public CTIEvent() {
     }
 
-    public CTIEvent(String eventName, Integer returnCode, String returnMessage, Map<String, String> arguments) {
-        this.eventName = eventName;
-        this.returnCode = returnCode;
-        this.returnMessage = returnMessage;
+    public CTIEvent(Map<String, String> arguments) {
         this.arguments = arguments;
-    }
-
-    public String getEventName() {
-        return eventName;
-    }
-
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
-    }
-
-    public Integer getReturnCode() {
-        return returnCode;
-    }
-
-    public void setReturnCode(Integer returnCode) {
-        this.returnCode = returnCode;
-    }
-
-    public String getReturnMessage() {
-        return returnMessage;
-    }
-
-    public void setReturnMessage(String returnMessage) {
-        this.returnMessage = returnMessage;
     }
 
     public Map<String, String> getArguments() {

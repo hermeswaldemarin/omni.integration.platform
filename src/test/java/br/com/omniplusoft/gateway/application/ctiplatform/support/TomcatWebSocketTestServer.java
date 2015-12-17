@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.web.socket;
+package br.com.omniplusoft.gateway.application.ctiplatform.support;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,6 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 
-import br.com.omniplusoft.gateway.support.WebSocketTestServer;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleEvent;
 import org.apache.catalina.LifecycleListener;
@@ -40,8 +39,9 @@ import org.springframework.util.SocketUtils;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.socket.WebSocketHandler;
+import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.client.WebSocketClient;
-import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 
 /**
  * Tomcat based {@link WebSocketTestServer}.

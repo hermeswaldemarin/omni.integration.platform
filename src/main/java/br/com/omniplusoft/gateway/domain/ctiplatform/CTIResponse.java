@@ -14,6 +14,12 @@ public class CTIResponse {
     public CTIResponse() {
     }
 
+    public CTIResponse(String eventName, Integer returnCode, String returnMessage) {
+        this.eventName = eventName;
+        this.returnCode = returnCode;
+        this.returnMessage = returnMessage;
+    }
+
     public CTIResponse(String eventName, Integer returnCode, String returnMessage, Map<String, String> arguments) {
         this.eventName = eventName;
         this.returnCode = returnCode;

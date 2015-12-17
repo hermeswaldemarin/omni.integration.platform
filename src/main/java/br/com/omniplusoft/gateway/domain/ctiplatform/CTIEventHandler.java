@@ -6,6 +6,8 @@ import br.com.omniplusoft.gateway.infrastructure.ctiplatform.CTIEvents;
 import br.com.omniplusoft.gateway.infrastructure.ctiplatform.annotation.EventHandler;
 import br.com.omniplusoft.gateway.infrastructure.ctiplatform.annotation.Handle;
 import org.reflections.Reflections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ public class CTIEventHandler {
 
     private ApplicationContext context;
 
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     public CTIEventHandler(ApplicationContext context){
         this.context = context;
@@ -40,8 +44,16 @@ public class CTIEventHandler {
             for(Method method: clazz.getDeclaredMethods()){
                 Handle handle = null;
                 if(( handle = method.getAnnotation(Handle.class)) != null){
+                    Object bean = null;
 
-                    cache.put(handle.value(), new EventDispatcher(method, context.getBean(clazz)));
+                    try{
+                        bean = context.getBean(clazz);
+                    }catch (Exception e){
+                        logger.info("Bean not fount " + clazz);
+                    }
+
+                    if(bean != null )
+                        cache.put(handle.value(), new EventDispatcher(method, bean));
 
                 }
             }

@@ -6,16 +6,28 @@ package br.com.omniplusoft.gateway.domain.ctiplatform.event;
 public class LoginEvent extends CTIEvent {
 
     private String userName;
-    private String password;
+    private String userPassword;
+    private String userAdmin;
+    private String passwordAdmin;
+    private String serviceName;
+    private String terminalNumber;
+    private String agentNumber;
+    private String group;
 
     public LoginEvent() {
         super();
     }
 
-    public LoginEvent(String userName, String password) {
+    public LoginEvent(String userName, String userPassword, String userAdmin, String passwordAdmin, String serviceName, String terminalNumber, String agentNumber, String group) {
         super();
         this.userName = userName;
-        this.password = password;
+        this.userPassword = userPassword;
+        this.userAdmin = userAdmin;
+        this.passwordAdmin = passwordAdmin;
+        this.serviceName = serviceName;
+        this.terminalNumber = terminalNumber;
+        this.agentNumber = agentNumber;
+        this.group = group;
     }
 
     public String getUserName() {
@@ -26,11 +38,59 @@ public class LoginEvent extends CTIEvent {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public String getUserAdmin() {
+        return userAdmin;
+    }
+
+    public void setUserAdmin(String userAdmin) {
+        this.userAdmin = userAdmin;
+    }
+
+    public String getPasswordAdmin() {
+        return passwordAdmin;
+    }
+
+    public void setPasswordAdmin(String passwordAdmin) {
+        this.passwordAdmin = passwordAdmin;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public String getTerminalNumber() {
+        return terminalNumber;
+    }
+
+    public void setTerminalNumber(String terminalNumber) {
+        this.terminalNumber = terminalNumber;
+    }
+
+    public String getAgentNumber() {
+        return agentNumber;
+    }
+
+    public void setAgentNumber(String agentNumber) {
+        this.agentNumber = agentNumber;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 }

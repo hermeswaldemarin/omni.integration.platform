@@ -10,4 +10,8 @@ run the spring boot using the example profile to run the CTI Fake Object.
 After the server start you can test the events in this link.
 
 http://localhost:8080/ctiTest.html ou mvn clean test
+
+
+
+System.getProperty("user.dir") + System.getProperty("file.separator") + resource
  

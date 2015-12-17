@@ -1,10 +1,15 @@
-package br.com.omniplusoft.gateway.application.ctiplatform;
+package br.com.omniplusoft.gateway.application.ctiplatform.exampleimpl;
 
+import br.com.omniplusoft.gateway.application.ctiplatform.AbstractCTIPlatformTest;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class CTIPlatformItegrationExampleTests extends AbstractCTIPlatformTest{
+public class CTIPlatformItegrationExampleTests extends AbstractCTIPlatformTest {
+
+    public CTIPlatformItegrationExampleTests(){
+        this.activeProfile = "example";
+    }
 
     @Test
     public void loginShouldReturnOkMessage() throws Exception {

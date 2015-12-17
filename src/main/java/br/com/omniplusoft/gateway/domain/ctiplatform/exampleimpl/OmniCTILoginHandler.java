@@ -6,6 +6,8 @@ import br.com.omniplusoft.gateway.domain.ctiplatform.event.LoginEvent;
 import br.com.omniplusoft.gateway.infrastructure.ctiplatform.CTIEvents;
 import br.com.omniplusoft.gateway.infrastructure.ctiplatform.annotation.EventHandler;
 import br.com.omniplusoft.gateway.infrastructure.ctiplatform.annotation.Handle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 
@@ -24,9 +26,13 @@ public class OmniCTILoginHandler {
     @Autowired
     CallbackDispatcher callbackDispatcher;
 
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     @Handle(CTIEvents.LOGIN)
     public void execute(LoginEvent event){
         event.getUserName();
+
+        logger.info("#################testando o logger espec.....", "teste", "teste", "teste");
 
         callbackDispatcher.dispatch(new CTIResponse("status", 0, "Login OK", Collections.unmodifiableMap(Stream.of(
                 new AbstractMap.SimpleEntry<>("arg1", "one"),

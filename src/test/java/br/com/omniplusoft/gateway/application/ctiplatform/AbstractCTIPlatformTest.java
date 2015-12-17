@@ -1,10 +1,11 @@
 package br.com.omniplusoft.gateway.application.ctiplatform;
 
 import br.com.omniplusoft.gateway.application.ctiplatform.config.TestWebSocketConfig;
+import br.com.omniplusoft.gateway.application.ctiplatform.exampleimpl.CTIPlatformItegrationExampleTests;
 import br.com.omniplusoft.gateway.application.ctiplatform.support.StompTextMessageBuilder;
 import br.com.omniplusoft.gateway.application.ctiplatform.support.TestClientWebSocketHandler;
 import br.com.omniplusoft.gateway.domain.ctiplatform.event.CTIEvent;
-import br.com.omniplusoft.gateway.support.WebSocketTestServer;
+import br.com.omniplusoft.gateway.application.ctiplatform.support.WebSocketTestServer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,7 +14,7 @@ import org.junit.Before;
 import org.springframework.messaging.simp.stomp.StompCommand;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.TomcatWebSocketTestServer;
+import br.com.omniplusoft.gateway.application.ctiplatform.support.TomcatWebSocketTestServer;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -33,11 +34,13 @@ public abstract class AbstractCTIPlatformTest {
 
     protected static final long TIMEOUT = 2;
 
+    protected String activeProfile = "example";
+
 
     @Before
     public void setUp() throws Exception {
 
-        System.setProperty("spring.profiles.active", "example");
+        System.setProperty("spring.profiles.active", activeProfile);
 
         this.wac = new AnnotationConfigWebApplicationContext();
         this.wac.register(TestWebSocketConfig.class);
@@ -74,7 +77,7 @@ public abstract class AbstractCTIPlatformTest {
 
 
     protected String getPayloadReturnFromEvent(String eventName) throws Exception{
-        CTIEvent eventToSend = new CTIEvent(eventName, null, null, new HashMap<>());
+        CTIEvent eventToSend = new CTIEvent(new HashMap<>());
 
         ObjectMapper mapper = new ObjectMapper();
 

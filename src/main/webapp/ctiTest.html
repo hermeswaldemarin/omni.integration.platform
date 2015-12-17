@@ -14,21 +14,28 @@
 
 
     $( document ).ready(function() {
+
         stompClient.connect({}, function(frame) {
+
             stompClient.subscribe("/messages/cti/eventcallback", function(message) {
                 $("#mensagem").html(JSON.parse(message.body).returnMessage);
             });
+
+            stompClient.subscribe("/messages/cti/log", function(message) {
+                $("#error").html($("#error").html() + "<BR>" + message.body);
+            });
+
         });
+
     });
 
-    function send(object){
-        stompClient.send("/gateway/cti/command/" + object.eventName, {destination: "/gateway/cti/command/" + object.eventName}, JSON.stringify(object));
+    function send(event, object){
+        stompClient.send("/gateway/cti/command/" + event, {destination: "/gateway/cti/command/" + event}, JSON.stringify(object));
     }
 ""
     function login(){
-        send(
+        send("login",
                 {
-                    eventName : "login",
                     arguments : {
                         arg1 : "teste",
                         arg2 : "teste2"
@@ -131,6 +138,10 @@
 
 <br>
 <div id="mensagem"></div>
+<BR>
+<BR>
+ERROS
+<div id="error"></div>
 
 </body>
 </html>

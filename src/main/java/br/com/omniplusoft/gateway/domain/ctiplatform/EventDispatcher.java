@@ -2,6 +2,7 @@ package br.com.omniplusoft.gateway.domain.ctiplatform;
 
 import br.com.omniplusoft.gateway.domain.ctiplatform.event.CTIEvent;
 import br.com.omniplusoft.gateway.domain.ctiplatform.exceptions.CTIMethodArgumentMismatchException;
+import br.com.omniplusoft.gateway.domain.ctiplatform.exceptions.DispatchExecutionException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -25,9 +26,9 @@ public class EventDispatcher {
             method.invoke(instance, event);
 
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            throw new DispatchExecutionException(e);
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            throw new DispatchExecutionException(e);
         } catch (IllegalArgumentException e){
             throw new CTIMethodArgumentMismatchException("Method "
                     + this.method.getName()
