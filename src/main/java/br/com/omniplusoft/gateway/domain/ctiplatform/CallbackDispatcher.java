@@ -14,6 +14,7 @@ public class CallbackDispatcher {
     private MessageSendingOperations<String> messagingTemplate;
 
     public void dispatch(CTIResponse response) {
-        this.messagingTemplate.convertAndSend("/messages/cti/eventcallback", response);
+        if(this.messagingTemplate != null)
+            this.messagingTemplate.convertAndSend("/messages/cti/eventcallback", response);
     }
 }
