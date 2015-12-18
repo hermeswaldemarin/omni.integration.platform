@@ -45,9 +45,8 @@
     }
 
     function logout(){
-        send(
+        send("login",
                 {
-                    eventName : "logout",
                     arguments : {
                         arg1 : "teste",
                         arg2 : "teste2"
@@ -57,9 +56,8 @@
     }
 
     function xxx(){
-        send(
+        send("xxx",
                 {
-                    eventName : "xxx",
                     arguments : {
                         arg1 : "teste",
                         arg2 : "teste2"
@@ -69,9 +67,8 @@
     }
 
     function becomeAvailable(){
-        send(
+        send("becomeAvailable",
                 {
-                    eventName : "becomeAvailable",
                     arguments : {
                         arg1 : "teste",
                         arg2 : "teste2"
@@ -81,9 +78,8 @@
     }
 
     function becomeUnavailable(){
-        send(
+        send("becomeUnavailable",
                 {
-                    eventName : "becomeUnavailable",
                     arguments : {
                         arg1 : "teste",
                         arg2 : "teste2"
@@ -93,9 +89,8 @@
     }
 
     function answer(){
-        send(
+        send("answer",
                 {
-                    eventName : "answer",
                     arguments : {
                         arg1 : "teste",
                         arg2 : "teste2"
@@ -105,9 +100,8 @@
     }
 
     function dropCall(){
-        send(
+        send("dropCall",
                 {
-                    eventName : "dropCall",
                     arguments : {
                         arg1 : "teste",
                         arg2 : "teste2"
