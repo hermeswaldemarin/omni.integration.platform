@@ -1,6 +1,6 @@
 package br.com.omniplusoft.gateway.application.ctiplatform.exampleimpl;
 
-import br.com.omniplusoft.gateway.CtiPlatformApplication;
+import br.com.omniplusoft.gateway.OmniPlusoftGatewayPlatformApplication;
 import br.com.omniplusoft.gateway.domain.ctiplatform.CTIEventHandler;
 import br.com.omniplusoft.gateway.domain.ctiplatform.event.MakeCallEvent;
 import org.junit.Assert;
@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Created by hermeswaldemarin on 14/12/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = CtiPlatformApplication.class)
+@SpringApplicationConfiguration(classes = OmniPlusoftGatewayPlatformApplication.class)
 @ActiveProfiles("example")
 public class MakeCallHandlerTest {
 
