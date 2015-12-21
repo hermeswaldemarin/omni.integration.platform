@@ -40,8 +40,7 @@
         return {
             off: off,
             on: on,
-            trigger: trigger,
-            e: events
+            trigger: trigger
         };
     }
 
@@ -79,10 +78,10 @@
         }
 
         function registerMainAction( actionName ){
-            adapter[actionName] = dispatchAction(actionName);
+            adapter[actionName] = buildDispatchAction(actionName);
         }
 
-        function dispatchAction( actionName ){
+        function buildDispatchAction( actionName ){
             return function(obj){
                 send(actionName, obj);
             }
