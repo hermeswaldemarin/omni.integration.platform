@@ -28,7 +28,7 @@ public class OmniCTIBecomeUnavailableHandler {
     public void execute(BecomeUnavailableEvent event){
         event.getArguments();
 
-        callbackDispatcher.dispatch(new CTIResponse("status", 0, "Now you are unavailable.", Collections.unmodifiableMap(Stream.of(
+        callbackDispatcher.dispatch(new CTIResponse("becomeUnavailable", 0, "Now you are unavailable.", Collections.unmodifiableMap(Stream.of(
                 new AbstractMap.SimpleEntry<>("arg1", "one"),
                 new AbstractMap.SimpleEntry<>("arg2", "two"))
                 .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())))));

@@ -28,7 +28,7 @@ public class OmniCTILogoutHandler {
     public void execute(LogoutEvent event){
         event.getArguments();
 
-        callbackDispatcher.dispatch(new CTIResponse("status", 0, "Logout OK", Collections.unmodifiableMap(Stream.of(
+        callbackDispatcher.dispatch(new CTIResponse("logout", 0, "Logout OK", Collections.unmodifiableMap(Stream.of(
                 new AbstractMap.SimpleEntry<>("arg1", "one"),
                 new AbstractMap.SimpleEntry<>("arg2", "two"))
                 .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())))));

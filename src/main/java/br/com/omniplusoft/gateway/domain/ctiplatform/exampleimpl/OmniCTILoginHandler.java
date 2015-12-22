@@ -34,7 +34,7 @@ public class OmniCTILoginHandler {
 
         logger.info("#################testando o logger espec.....", "teste", "teste", "teste");
 
-        callbackDispatcher.dispatch(new CTIResponse("status", 0, "Login OK", Collections.unmodifiableMap(Stream.of(
+        callbackDispatcher.dispatch(new CTIResponse("login", 0, "Login OK", Collections.unmodifiableMap(Stream.of(
                 new AbstractMap.SimpleEntry<>("arg1", "one"),
                 new AbstractMap.SimpleEntry<>("arg2", "two"))
                 .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())))));

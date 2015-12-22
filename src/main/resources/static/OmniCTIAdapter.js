@@ -44,7 +44,7 @@
         };
     }
 
-    function AvayaCTIAdapter(params) {
+    function OmniCTIAdapter(params) {
         //Check params
         if ( !params ) throw Error( 'Mssing adapter parameters' );
         if ( !params.url || typeof params.url != 'string' ) throw Error( 'Missing connection URL' );
@@ -63,7 +63,7 @@
 
         function connect() {
             stompClient.connect({}, function() {
-                eventHandler.trigger("AvayaConnect");
+                eventHandler.trigger("OmniCTIConnect");
                 stompClient.subscribe(EVENT_CALLBACK_PATH, function(message) {
                     var parsedMessage = JSON.parse(message.body);
                     //todo: implementar eventos vindos do servidor
@@ -72,7 +72,7 @@
                 stompClient.subscribe(LOG_PATH, function(message) {
                     var parsedMessage = JSON.parse(message.body);
                     //todo: implementar eventos vindos do servidor
-                    eventHandler.trigger(parsedMessage.eventName, parsedMessage);
+                    eventHandler.trigger("log", parsedMessage);
                 });
             });
         }
@@ -88,11 +88,11 @@
         }
 
         function send( event, object ){
-            eventHandler.trigger("AvayaSend", object);
+            eventHandler.trigger("OmniCTISend", object);
             stompClient.send(SEND_EVENTS_PATH + event, {destination: SEND_EVENTS_PATH + event}, JSON.stringify(object));
         }
 
-        var mainActions = ["answer", "becomeAvailable", "becomeUnavailable", "cancel", "conference", "consult", "dropCall", "hold", "login", "logout", "makeCall", "transfer", "unhold"];
+        var mainActions = ["answer", "becomeAvailable", "becomeUnavailable", "cancel", "conference", "consult", "dropCall", "hold", "login", "logout", "makeCall", "transfer", "unhold", "log"];
 
         for(var i = 0, l = mainActions.length; i < l; i++) registerMainAction(mainActions[i]);
 
@@ -106,5 +106,5 @@
     }
 
     //Add the constructor to global
-    window.AvayaCTIAdapter = AvayaCTIAdapter;
+    window.OmniCTIAdapter = OmniCTIAdapter;
 }());

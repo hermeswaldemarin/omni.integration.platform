@@ -9,7 +9,7 @@
 $(document).ready(function(){
 
     //Instantiate adapter
-    adapter = new AvayaCTIAdapter({
+    adapter = new OmniCTIAdapter({
         url: "http://localhost:8080",
         eventCallbackPath: "/messages/cti/eventcallback",
         logPath: "/messages/cti/log",
@@ -39,10 +39,14 @@ $(document).ready(function(){
 
 
 
-    adapter.on("AvayaConnect", function(){
+    adapter.on("OmniCTIConnect", function(){
         $('#mensagem').text('Conectado!');
     });
     adapter.on("ring", function(){
+        console.log(this.eventName)
+        console.log(this.returnCode)
+        console.log(this.returnMessage)
+        console.log(this.arguments)
         $('#mensagem').text('Está tocando!!!');
         $('.answer').removeAttr('disabled');
     });
@@ -55,6 +59,12 @@ $(document).ready(function(){
         $('#mensagem').text('Aguardando chamada');
         $('.answer').attr('disabled','disabled');
         $('.dropCall').attr('disabled','disabled');
+    })
+
+    adapter.on("log",function(){
+        console.log(this.level)
+        console.log(this.logger)
+        console.log(this.message)
     })
 
 
@@ -88,6 +98,6 @@ $(document).ready(function(){
 <BR>
 ERROS
 <div id="error"></div>
-<script src="AvayaCTIAdapter.js"></script>
+<script src="OmniCTIAdapter.js"></script>
 </body>
 </html>

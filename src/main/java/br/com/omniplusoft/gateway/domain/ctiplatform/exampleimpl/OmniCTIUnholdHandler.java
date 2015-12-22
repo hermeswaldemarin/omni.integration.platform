@@ -28,7 +28,7 @@ public class OmniCTIUnholdHandler {
     public void execute(UnHoldEvent event){
         event.getArguments();
 
-        callbackDispatcher.dispatch(new CTIResponse("status", 0, "Unhold call.", Collections.unmodifiableMap(Stream.of(
+        callbackDispatcher.dispatch(new CTIResponse("unHold", 0, "Unhold call.", Collections.unmodifiableMap(Stream.of(
                 new AbstractMap.SimpleEntry<>("arg1", "one"),
                 new AbstractMap.SimpleEntry<>("arg2", "two"))
                 .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())))));

@@ -28,7 +28,7 @@ public class OmniCTIConferenceHandler {
     public void execute(ConferenceEvent event){
         event.getArguments();
 
-        callbackDispatcher.dispatch(new CTIResponse("status", 0, "Conference Completed.", Collections.unmodifiableMap(Stream.of(
+        callbackDispatcher.dispatch(new CTIResponse("conference", 0, "Conference Completed.", Collections.unmodifiableMap(Stream.of(
                 new AbstractMap.SimpleEntry<>("arg1", "one"),
                 new AbstractMap.SimpleEntry<>("arg2", "two"))
                 .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())))));

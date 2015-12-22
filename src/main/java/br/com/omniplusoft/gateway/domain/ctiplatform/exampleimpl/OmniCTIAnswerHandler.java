@@ -28,7 +28,7 @@ public class OmniCTIAnswerHandler {
     public void execute(AnswerEvent event){
         event.getArguments();
 
-        callbackDispatcher.dispatch(new CTIResponse("status", 0, "Speaking.", Collections.unmodifiableMap(Stream.of(
+        callbackDispatcher.dispatch(new CTIResponse("answer", 0, "Speaking.", Collections.unmodifiableMap(Stream.of(
                 new AbstractMap.SimpleEntry<>("arg1", "one"),
                 new AbstractMap.SimpleEntry<>("arg2", "two"))
                 .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())))));
