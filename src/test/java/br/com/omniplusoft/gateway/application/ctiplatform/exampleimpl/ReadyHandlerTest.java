@@ -1,7 +1,7 @@
 package br.com.omniplusoft.gateway.application.ctiplatform.exampleimpl;
 
 import br.com.omniplusoft.gateway.OmniPlusoftGatewayPlatformApplication;
-import br.com.omniplusoft.gateway.domain.ctiplatform.event.BecomeUnavailableEvent;
+import br.com.omniplusoft.gateway.domain.ctiplatform.event.ReadyEvent;
 import br.com.omniplusoft.gateway.domain.ctiplatform.CTIEventHandler;
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,9 +21,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = OmniPlusoftGatewayPlatformApplication.class)
 @ActiveProfiles("example")
-public class BecomeUnavailableHandlerTest {
+public class ReadyHandlerTest {
 
-    BecomeUnavailableEvent event;
+    ReadyEvent event;
     private boolean called;
 
     @Autowired
@@ -32,7 +32,7 @@ public class BecomeUnavailableHandlerTest {
     @Before
     public void init(){
 
-        event = Mockito.mock(BecomeUnavailableEvent.class);
+        event = Mockito.mock(ReadyEvent.class);
 
         Mockito.doAnswer(new Answer<Void>() {
             @Override

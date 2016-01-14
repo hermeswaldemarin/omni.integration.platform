@@ -26,16 +26,16 @@ public class CTIPlatformItegrationExampleTests extends AbstractCTIPlatformTest {
     }
 
     @Test
-    public void becomeAvailableShouldReturnOkMessage() throws Exception {
+    public void readyShouldReturnOkMessage() throws Exception {
 
-        assertTrue(getPayloadReturnFromEvent("becomeAvailable").contains("Now you are available"));
+        assertTrue(getPayloadReturnFromEvent("ready").contains("Now you are available"));
 
     }
 
     @Test
-    public void becomeUnavailableShouldReturnOkMessage() throws Exception {
+    public void notReadyShouldReturnOkMessage() throws Exception {
 
-        assertTrue(getPayloadReturnFromEvent("becomeUnavailable").contains("Now you are unavailable"));
+        assertTrue(getPayloadReturnFromEvent("notReady").contains("Now you are unavailable"));
 
     }
 

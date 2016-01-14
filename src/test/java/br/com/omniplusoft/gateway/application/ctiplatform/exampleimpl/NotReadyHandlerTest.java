@@ -1,7 +1,7 @@
 package br.com.omniplusoft.gateway.application.ctiplatform.exampleimpl;
 
 import br.com.omniplusoft.gateway.OmniPlusoftGatewayPlatformApplication;
-import br.com.omniplusoft.gateway.domain.ctiplatform.event.BecomeAvailableEvent;
+import br.com.omniplusoft.gateway.domain.ctiplatform.event.NotReadytEvent;
 import br.com.omniplusoft.gateway.domain.ctiplatform.CTIEventHandler;
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,9 +21,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = OmniPlusoftGatewayPlatformApplication.class)
 @ActiveProfiles("example")
-public class BecomeAvailableHandlerTest {
+public class NotReadyHandlerTest {
 
-    BecomeAvailableEvent event;
+    NotReadytEvent event;
     private boolean called;
 
     @Autowired
@@ -32,7 +32,7 @@ public class BecomeAvailableHandlerTest {
     @Before
     public void init(){
 
-        event = Mockito.mock(BecomeAvailableEvent.class);
+        event = Mockito.mock(NotReadytEvent.class);
 
         Mockito.doAnswer(new Answer<Void>() {
             @Override

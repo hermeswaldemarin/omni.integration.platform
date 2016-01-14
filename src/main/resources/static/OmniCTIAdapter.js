@@ -75,6 +75,12 @@
                     eventHandler.trigger("log", parsedMessage);
                 });
             });
+
+
+        }
+
+        function disconnect(){
+            stompClient.disconnect();
         }
 
         function registerMainAction( actionName ){
@@ -92,7 +98,7 @@
             stompClient.send(SEND_EVENTS_PATH + event, {destination: SEND_EVENTS_PATH + event}, JSON.stringify(object));
         }
 
-        var mainActions = ["answer", "becomeAvailable", "becomeUnavailable", "cancel", "conference", "consult", "dropCall", "hold", "login", "logout", "makeCall", "transfer", "unhold", "log"];
+        var mainActions = ["answer", "ready", "notReady", "cancel", "conference", "consult", "dropCall", "hold", "login", "logout", "makeCall", "transfer", "unhold", "log"];
 
         for(var i = 0, l = mainActions.length; i < l; i++) registerMainAction(mainActions[i]);
 

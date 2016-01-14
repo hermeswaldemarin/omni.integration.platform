@@ -6,6 +6,8 @@ import br.com.omniplusoft.gateway.domain.ctiplatform.event.CancelConsultEvent;
 import br.com.omniplusoft.gateway.infrastructure.ctiplatform.CTIEvents;
 import br.com.omniplusoft.gateway.infrastructure.ctiplatform.annotation.EventHandler;
 import br.com.omniplusoft.gateway.infrastructure.ctiplatform.annotation.Handle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 
@@ -21,6 +23,10 @@ import java.util.stream.Stream;
 @Profile("example")
 public class OmniCTICancelConsultHandler {
 
+
+
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     CallbackDispatcher callbackDispatcher;
 
@@ -28,9 +34,13 @@ public class OmniCTICancelConsultHandler {
     public void execute(CancelConsultEvent event){
         event.getArguments();
 
+
         callbackDispatcher.dispatch(new CTIResponse("cancelConsult", 0, "Consult canceled.", Collections.unmodifiableMap(Stream.of(
                 new AbstractMap.SimpleEntry<>("arg1", "one"),
                 new AbstractMap.SimpleEntry<>("arg2", "two"))
                 .collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())))));
+
+        logger.trace("CANCELCONSULT Event Called");
+
     }
 }

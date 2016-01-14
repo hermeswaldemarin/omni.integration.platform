@@ -9,7 +9,7 @@ public enum CTIEvents {
 
     LOGIN(LoginEvent.class),
     LOGOUT(LogoutEvent.class),
-    BECOMEUNAVAILABLE(BecomeUnavailableEvent.class),
+    NOTREADY(NotReadytEvent.class),
     ANSWER(AnswerEvent.class),
     MAKECALL(MakeCallEvent.class),
     DROPCALL(DropCallEvent.class),
@@ -19,7 +19,7 @@ public enum CTIEvents {
     CANCELCONSULT(CancelConsultEvent.class),
     TRANSFER(TransferEvent.class),
     CONFERENCE(ConferenceEvent.class),
-    BECOMEAVAILABLE(BecomeAvailableEvent.class),
+    READY(ReadyEvent.class),
     GENERICEVENT(GenericEvent.class);
 
     /*

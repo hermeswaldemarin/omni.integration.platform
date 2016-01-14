@@ -9,12 +9,12 @@
         </encoder>
     </appender>
 
-    <root level="ERROR">
+    <root level="TRACE">
         <appender-ref ref="STDOUT" />
     </root>
 
 
-    <logger name="org.springframework" level="ERROR"/>
+    <logger name="org.springframework" level="DEBUG"/>
     <logger name="br.com.omniplusoft" level="TRACE"/>
 
 

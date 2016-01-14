@@ -3,15 +3,15 @@ package br.com.omniplusoft.gateway.domain.ctiplatform.event;
 /**
  * Created by hermeswaldemarin on 14/12/15.
  */
-public class BecomeAvailableEvent extends CTIEvent {
+public class ReadyEvent extends CTIEvent {
 
     private String reasonCode;
 
-    public BecomeAvailableEvent() {
+    public ReadyEvent() {
         super();
     }
 
-    public BecomeAvailableEvent(String reasonCode) {
+    public ReadyEvent(String reasonCode) {
 
         this.reasonCode = reasonCode;
     }
