@@ -4,13 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.omniplusoft</groupId>
-	<artifactId>GatewayPlatform</artifactId>
+	<artifactId>IntegrationPlatform</artifactId>
 	<version>0.0.4-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
     <parent>
         <groupId>br.com.omniplusoft</groupId>
-        <artifactId>gatewayplatform-dependencies</artifactId>
+        <artifactId>integration-platform-dependencies</artifactId>
         <version>0.0.4-SNAPSHOT</version>
         <relativePath/>
     </parent>
@@ -19,7 +19,7 @@
 
     </dependencies>
 
-	<name>GatewayPlatform</name>
-	<description>Gateway Platform for Omni Plusoft</description>
+	<name>IntegrationPlatform</name>
+	<description>Integration Platform for Omni-Plusoft</description>
 
 </project>
