@@ -1,17 +1,18 @@
-## Omni Plusoft Gateway Platform
-The Omni Plusoft Gateway Platform provides a core abstraction to be able to integrate Omni Plusoft Solution to a Telephony Solution.
+## Omni Integration Platform
+The Omni Integration Platform provides a core environment to support the adapters that will be written to develop integrations for Omni-Plusoft.
 
-The Omni Plusoft Gateway Platform can also be used to build the integration tier on the server side. This Tier can be used as a middleware between Omni Plusoft and In Company components such as Procudures, Vies, Internal Webserviecs, etc..
-  
-First clone the repository https://github.com/hermeswaldemarin/omniplusoft.gateway.parent and run mvn install
- 
-run the spring boot using the example profile to run the CTI Fake Object.
+This Integration Platform is built on top of SpringBoot Framework and all Spring Modules can be used in the adapters.
 
-After the server start you can test the events in this link.
+Will be build adapter to this Integration Platform and this adapters are just a java maven project depending on this Integration Platform.
 
-http://localhost:8080/ctiTest.html ou mvn clean test
+When the clean package command is executed in the adapter project two jars will be generated.
 
+NAMEOFADAPTER-VERSION-SNAPSHOT.jar - This file contains all SpringBoot dependencies and this jar will not be used.
 
+NAMEOFADAPTER-VERSION-SNAPSHOT.jar.original - This file contains only the classes that Integration Platform will need. This file will be renamed do .jar and send to adapter folder.
 
-System.getProperty("user.dir") + System.getProperty("file.separator") + resource
- 
+To start Omni Integration Platform use a command like this
+
+java -cp "./IntegrationPlatform.jar:./adapter/*:./adapter/lib/*" org.springframework.boot.loader.JarLauncher
+
+This command will start the Integration Platform putting the adapters and adapter libraries on the memory, 
