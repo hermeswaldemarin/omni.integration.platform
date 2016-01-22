@@ -1,4 +1,4 @@
-package br.com.plusoft.omni.integration.infrastructure.config;
+package br.com.plusoftomni.integration.infrastructure.config;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
