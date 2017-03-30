@@ -19,12 +19,17 @@ public class CORSFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
-        if(response.getHeader("Access-Control-Allow-Origin")!=null
-                && request.getHeader("referer")!=null){
+        String referer = request.getHeader("referer");
+        if(referer == null){
+            referer = request.getHeader("origin");
+        }
+        if(referer!=null){
             Matcher matcher = pattern.matcher(request.getHeader("referer"));
             matcher.find();
-            if(matcher.groupCount()==0){
+            String tmpGroup = null;
+            try{
+                tmpGroup = matcher.group(0);
+            }catch (IllegalStateException e){
                 matcher = pattern2.matcher(request.getHeader("referer"));
                 matcher.find();
             }
