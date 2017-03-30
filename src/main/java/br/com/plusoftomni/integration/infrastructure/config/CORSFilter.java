@@ -24,13 +24,13 @@ public class CORSFilter extends OncePerRequestFilter {
             referer = request.getHeader("origin");
         }
         if(referer!=null){
-            Matcher matcher = pattern.matcher(request.getHeader("referer"));
+            Matcher matcher = pattern.matcher(referer);
             matcher.find();
             String tmpGroup = null;
             try{
                 tmpGroup = matcher.group(0);
             }catch (IllegalStateException e){
-                matcher = pattern2.matcher(request.getHeader("referer"));
+                matcher = pattern2.matcher(referer);
                 matcher.find();
             }
             response.addHeader("Access-Control-Allow-Origin", matcher.group(0));
