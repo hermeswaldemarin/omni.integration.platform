@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 public class CORSFilter extends OncePerRequestFilter {
 
     private static Pattern pattern = Pattern.compile("http:\\/\\/(.[^/]+)");
+    private static Pattern pattern2 = Pattern.compile("https:\\/\\/(.[^/]+)");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -23,6 +24,10 @@ public class CORSFilter extends OncePerRequestFilter {
                 && request.getHeader("referer")!=null){
             Matcher matcher = pattern.matcher(request.getHeader("referer"));
             matcher.find();
+            if(matcher.groupCount()==0){
+                matcher = pattern2.matcher(request.getHeader("referer"));
+                matcher.find();
+            }
             response.addHeader("Access-Control-Allow-Origin", matcher.group(0));
             response.addHeader("Access-Control-Allow-Credentials", "true");
             response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
